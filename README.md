@@ -1,4 +1,4 @@
 # WazChem
 
-Hello, World!
-aaaaaa
+WHAT'S CHEM?
+CHEMISTRY CAN CHANGE THE WORLD.
