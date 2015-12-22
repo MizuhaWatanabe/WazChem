@@ -6,32 +6,29 @@
 
 using namespace std;
 
-size_t callBackFunc(char *ptr, size_t size, size_t nmemb, string *str)
+size_t callBackFunc(char *ptr, size_t size, size_t nmemb, string *str)//コールバック関数
 {
 	int realsize=size*nmemb;
-	str->append(ptr,realsize);//‚±‚±‚Å‘‚«ž‚Ý‚ðs‚¤‚ç‚µ‚¢B
-	return realsize;//‚È‚­‚Ä‚à‚¢‚¢‚Ì‚©cH
+	str->append(ptr,realsize);//格納？
+	return realsize;
 }
 
 
 vector<string> tagsplitter(string &str)
+//「<>」記号ごとにスプリットする関数。改行は無視されるので、改行のみの要素は作成されない。
+//vector<string>に格納して返す。
 {
 	
 	vector<string> res;
-	//size_t current=0;
 	size_t current=str.find_first_not_of("\n<>",1);
 	size_t found;
 
 
 
-	//‚Í‚¶‚ß‚Í‚©‚È‚ç‚¸<>\n‚Ì‚Ç‚ê‚©‚È‚Ì‚Åc
-
 	
 	while((found=str.find_first_of("\n<>",current)) != string::npos){ 
 		
-		//cout<<str.find_first_not_of("\n<>",found)<<","<<found<<","<<current<<endl;
 		res.push_back(string(str,current,found-current));
-		//current=found+1;
 		if(str.find_first_not_of("\n<>",found) != string::npos){
 			current=str.find_first_not_of("\n<>",found);
 		}
@@ -61,8 +58,7 @@ int main(void)
     /* example.com is redirected, so we tell libcurl to follow redirection */ 
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
  
-
-	//string‚ÉŠi”[‚·‚é‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”‚Æ•Û‘¶æ‚ÌŽw’è
+	//取得データを変数に格納するための記述
 
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callBackFunc);
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &hozonsaki);
@@ -76,9 +72,12 @@ int main(void)
       fprintf(stderr, "curl_easy_perform() failed: %s\n",
               curl_easy_strerror(res));
  
-	////////////ŒŸõ‚Æo—Í
-
+	
 	vector<string> ans=tagsplitter(hozonsaki);
+
+	//USD/JPYのBidを取得する記述。
+	//記述箇所が特定できるタグを検索した後、
+	//イテレータで移動しながら数値を取得している。
 
 	vector<string>::iterator cIter=find(ans.begin(), ans.end(), "dd id=\"USDJPY_detail_bid\"");
 
@@ -89,7 +88,7 @@ int main(void)
     /* always cleanup */ 
     curl_easy_cleanup(curl);
   }
-  Sleep(10000);
+  Sleep(10000);//ループの待ち時間。良い書き方ではない。間隔が短すぎるとyahooに怒られる。
   }
   return 0;
 }
