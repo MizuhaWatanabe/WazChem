@@ -50,6 +50,10 @@ string CurrentFx::get_currency_pair(void)
 	return currency_pair;
 }
 
+string CurrentFx::get_verbose(void)
+{
+	return verbose;
+}
 /////////////////ˆ—Œn//////////////////////////////////////
 
 void CurrentFx::LoadCurrentFx(void)
@@ -57,11 +61,11 @@ void CurrentFx::LoadCurrentFx(void)
 //
 {
 	string url="http://info.finance.yahoo.co.jp/fx/list/";
-	WebScraper websc;
-	websc.set_url(url);
-	websc.LoadHtml();
-	cout << websc.get_html() << endl;
-	/*vector<string> splitted_tag = websc.get_splitted_tag();
+	verbose="scraped from http://info.finance.yahoo.co.jp/fx/list/.";
+	WebScraper websc(url);
+	time(&got_time);//‚Ìæ“¾
+	vector<string> splitted_tag = websc.get_splitted_tag();
+
 
 	vector<string>::iterator cIter=find(splitted_tag.begin(), splitted_tag.end(), "span id=\""+currency_pair+"_chart_bid\"");
 	if(cIter!=splitted_tag.end()){
@@ -71,8 +75,8 @@ void CurrentFx::LoadCurrentFx(void)
 	cIter=find(splitted_tag.begin(), splitted_tag.end(), "span id=\""+currency_pair+"_chart_ask\"");
 	if(cIter!=splitted_tag.end()){
 		size_t index=distance(splitted_tag.begin(),cIter);
-		bid_price=stod("0"+splitted_tag[(int)index+1]);
-	}*/
+		ask_price=stod("0"+splitted_tag[(int)index+1]);
+	}
 }
 
 

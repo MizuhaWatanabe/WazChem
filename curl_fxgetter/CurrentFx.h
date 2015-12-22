@@ -16,6 +16,7 @@
 
 class CurrentFx
 {
+	string verbose;//冗長情報。参照先の表示などに。
 
 	time_t got_time;//取得時間
 	
@@ -32,6 +33,7 @@ public:
 
 	void set_currency_pair(string);
 	string get_currency_pair(void);
+	string get_verbose(void);
 	double get_bid_price(void);
 	double get_ask_price(void);
 	time_t get_got_time(void);
