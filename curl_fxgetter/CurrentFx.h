@@ -11,9 +11,6 @@
 
 #pragma once
 
-
-
-
 class CurrentFx
 {
 	string verbose;//冗長情報。参照先の表示などに。

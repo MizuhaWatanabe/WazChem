@@ -1,0 +1,5 @@
+Wed Dec 23 15:03:24 2015
+
+scraped fromhttp://stocks.finance.yahoo.co.jp/stocks/detail/?code=8704.
+トレイダーズホールディングス(株)【8704】：株式/株価 - Yahoo!ファイナンス
+182

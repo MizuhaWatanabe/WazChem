@@ -67,12 +67,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CurrentFx.cpp" />
+    <ClCompile Include="CurrentStock.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PastFx.cpp" />
     <ClCompile Include="WebScraper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CurrentFx.h" />
+    <ClInclude Include="CurrentStock.h" />
     <ClInclude Include="PastFx.h" />
     <ClInclude Include="WebScraper.h" />
   </ItemGroup>
